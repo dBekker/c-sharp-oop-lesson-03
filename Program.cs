@@ -6,18 +6,29 @@ class Program
     {
         Console.Write("Введите ваше имя: ");
         string name = Console.ReadLine();
-        Console.Write($"Ваше имя: {name}");
+        Console.WriteLine($"Ваше имя: {name}");
 
-        Console.Write("Введите ваш пол (м/ж): ");
-        string gender = Console.ReadLine().Trim().ToLower();
+        Console.Write("Введите ваш возраст: ");
+        int age;
 
-        if(gender == "м")
+        while(!int.TryParse(Console.ReadLine(), out age) ||  age < 0)
         {
+            Console.WriteLine("Некорректный ввод. Введите число больше либо 0.");
+            Console.Write("Введите ваш возраст: ");
+        }
 
-        }
-        else
-        {
-            
-        }
+        Console.Write($"Ваш возраст: {age}");
+
+        // Console.Write("Введите ваш пол (м/ж): ");
+        // string gender = Console.ReadLine().Trim().ToLower();
+
+        // if(gender == "м")
+        // {
+
+        // }
+        // else
+        // {
+
+        // }
     }
 } 
