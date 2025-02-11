@@ -48,3 +48,21 @@ class FemalePerson : Person
 
     protected override string GetPreferenceDescription() => $"Любимые цветы: {PreferredThing}";
 }
+
+class ChildPerson : Person
+{
+    public string FavoriteToy { get; set; }
+
+    public ChildPerson(string name, int age, string favoriteToy) : base(name, age, favoriteToy)
+    {
+        FavoriteToy = favoriteToy;
+    }
+
+    protected override string GetPreferenceDescription() => $"Любимая игрушка: {PreferredThing}";
+
+    public override void AskPreference()
+    {
+        Console.Write("Какая твоя любимая игрушка? ");
+        FavoriteToy = Console.ReadLine();
+    }
+} 

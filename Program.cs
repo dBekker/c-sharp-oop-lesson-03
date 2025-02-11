@@ -1,5 +1,4 @@
-﻿
-class Program
+﻿class Program
 {
     static void Main()
     {
@@ -29,6 +28,35 @@ class Program
 
         person.AskPreference();
         person.DisplayInfo();
+
+        Console.Write("У вас есть ребёнок? (да/нет): ");
+        string hasChild;
+        while (true)
+        {
+            hasChild = Console.ReadLine().Trim().ToLower();
+            if (hasChild == "да" || hasChild == "нет")
+                break;
+            Console.WriteLine("Некорректный ввод. Введите 'да' или 'нет': ");
+        }
+
+        if (hasChild == "да")
+        {
+            Console.Write("Введите имя ребёнка: ");
+            string childName = Console.ReadLine();
+
+            Console.Write("Введите возраст ребёнка: ");
+            int childAge;
+            while (!int.TryParse(Console.ReadLine(), out childAge) || childAge < 0)
+            {
+                Console.WriteLine("Некорректный ввод. Введите число больше либо равное 0.");
+            }
+
+            ChildPerson child = new ChildPerson(childName, childAge, "");
+            child.AskPreference();
+            Console.WriteLine("\nИнформация о ребёнке:");
+            child.DisplayInfo();
+            Console.WriteLine();
+        }
 
         Console.WriteLine("Нажмите любую клавишу для выхода...");
         Console.ReadKey();
