@@ -1,25 +1,43 @@
 ﻿using System;
 
-class Person 
-{
-    public string Name;
-    public int Age;
-    public string Gender;
-    public string PrefferedThing;
-}
-
 class Program
 {
     static void Main()
     {
-        Person person = new Person();
+        // Создание объекта - Персона
+        Person person;
+        bool inCorrectGender = true;
+        while(inCorrectGender)
+        {
+            Console.Write("Введите ваш пол (м/ж): ");
+            string gender = Console.ReadLine().Trim().ToLower();
+            switch(gender)
+            {
+                case "м":
+                    person = new BoyPerson();
+                    inCorrectGender = false;
+                    break;
+                case "ж":
+                    person = new BoyPerson();
+                    inCorrectGender = false;
+                    break;
+                default:
+                    Console.WriteLine("Некорректный ввод, допустимые значения - (м/ж): ");
+                    break;
+            }
+        }
+        
         Console.Write("Введите ваше имя: ");
-        person.Name = Console.ReadLine();
-        Console.WriteLine($"Ваше имя: {person.Name}");
+        
+        // Установка имени
+        person.setName(Console.ReadLine());
+        
+        Console.WriteLine($"Ваше имя: {person.getName(false)}");
 
         Console.Write("Введите ваш возраст: ");
 
-        while(!int.TryParse(Console.ReadLine(), out person.Age) ||  person.Age < 0)
+        // Установка возраста
+        while((int.TryParse(Console.ReadLine(), out person.Age) == false) ||  (person.Age < 0))
         {
             Console.WriteLine("Некорректный ввод. Введите число больше либо 0.");
             Console.Write("Введите ваш возраст: ");
@@ -27,22 +45,11 @@ class Program
 
         Console.Write($"Ваш возраст: {person.Age}");
 
-        Console.Write("Введите ваш пол (м/ж): ");
-        person.Gender = Console.ReadLine().Trim().ToLower();
+        // Установка любимой вещи
+        person.askPreferense();
 
-        if(person.Gender == "м")
-        {
-            Console.Write("Введите вашу любимую марку машины: ");
-            person.PrefferedThing = Console.ReadLine();
-            Console.WriteLine($"Приятно познакомиться, {person.Name}. Ваш возраст {person.Age}. Ваша любимая машина {person.PrefferedThing}");
-        }
-        else
-        {
-            Console.Write("Введите ваши любимые цветы: ");
-            person.PrefferedThing = Console.ReadLine();
-            Console.WriteLine($"Приятно познакомиться, {person.Name}. Ваш возраст {person.Age}. Ваши любимые цветы {person.PrefferedThing}");
-        }
-
+        // Вывод сводной информации
+        Console.WriteLine(person.displayInfo());
         Console.WriteLine("Нажмите любую клавишу для выхода...");
         Console.ReadKey();
     }
