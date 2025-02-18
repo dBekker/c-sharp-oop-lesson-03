@@ -5,7 +5,7 @@ class Program
     static void Main()
     {
         // Создание объекта - Персона
-        Person person;
+        Person person = null;
         bool inCorrectGender = true;
         while(inCorrectGender)
         {
@@ -18,7 +18,7 @@ class Program
                     inCorrectGender = false;
                     break;
                 case "ж":
-                    person = new BoyPerson();
+                    person = new GirlPerson();
                     inCorrectGender = false;
                     break;
                 default:
